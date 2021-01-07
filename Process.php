@@ -6,7 +6,7 @@ class Process extends Config{
   //insert
   public function insert($array){
     $this->conect();
-    $values = "'" . implode("',' ", $array) . "'";
+    $values = "'" . implode("', '", $array) . "'";
     $query = "INSERT INTO vagas (titulo, descricao, ativo, data) VALUES ({$values})";
     $executar = $this->pdo->exec($query);
     if($executar){
