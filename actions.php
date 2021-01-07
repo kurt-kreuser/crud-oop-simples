@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 //alterar status do botão update/cadastrar
 $status_button = ( !isset($_GET['id']) ? 'enviar' : 'atualizar' );
 //alterar status do botão update/cadastrar
@@ -66,16 +65,19 @@ if(isset($_POST['atualizar'])){
 
 //mostrar error mensagens
 if( isset($_GET['success']) and !empty($_GET['success']) ){
-  $err = $_SESSION['errorMsg'];
-  switch ($_GET['success']) {
-    case 'insert': $success = 'success';
-      break;
-    case 'update': $success = 'info';
-      break;
-    case 'delete': $success = 'danger';
-      break;
+    $err = $_SESSION['errorMsg'];
+  if( !empty($err) ){
+    switch ($_GET['success']){
+      case 'insert': $success = 'success';
+        break;
+      case 'update': $success = 'info';
+        break;
+      case 'delete': $success = 'danger';
+        break;
+    }//if
+  }else{
+    header('location: index.php'); exit;
   }
 }
-
 
 ?>
